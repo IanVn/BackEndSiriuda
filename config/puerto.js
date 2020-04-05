@@ -1,5 +1,5 @@
 // Estableciendo el valor del puerto
-const puerto = process.env.PORT || 8080;
+var puerto = process.env.PORT || 3000;
 
 // Exportamos el puerto como una constante
 module.exports = puerto;
