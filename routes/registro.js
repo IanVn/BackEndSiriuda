@@ -320,6 +320,76 @@ app.get('/verificaCorreo/:correo', async(req, res) => {
   });
 })
 
+// Peticion para obtener las asignaturas del area clinica
+app.get("/AreaClinica", async(req, res ) => {
 
+  // Realizamos la consulta a la base de datos para obtener las asignaturas de area clinica
+  let consulta = 'select id_asignatura_clinica, nombre_asignatura_clinica from area_clinica;';
+
+  // Obtenemos los datos
+  let datos = await pool.query(consulta);
+
+  // Si el arreglo de objetos es vacio entonces no hay resultado
+  if( datos.length <= 0 ){
+    return res.status(404).json({
+        estado: false,
+        mensaje: 'No se encontraron resultado'
+    });
+  }
+
+  res.status(200).json({
+      estado: true,
+      mensaje: 'Se encontraron las siguientes asiganturas de area clinica',
+      datos
+  });
+})
+
+// Peticion para obtener las asignaturas de bases biomedicas
+app.get("/BaseBiomedica", async(req, res ) => {
+
+  // Realizamos la consulta a la base de datos para obtener las asignaturas de area clinica
+  let consulta = 'select id_asignatura_biomedica, nombre_asig_biomedica from bases_biomedicas;';
+
+  // Obtenemos los datos
+  let datos = await pool.query(consulta);
+
+  // Si el arreglo de objetos es vacio entonces no hay resultado
+  if( datos.length <= 0 ){
+    return res.status(404).json({
+        estado: false,
+        mensaje: 'No se encontraron resultados'
+    });
+  }
+
+  res.status(200).json({
+      estado: true,
+      mensaje: 'Se encontraron las siguientes asiganturas de bases biomedicas',
+      datos
+  });
+})
+
+// Peticion para obtener las asignaturas de bases sociomedicas
+app.get("/BaseSociomedica", async(req, res ) => {
+
+  // Realizamos la consulta a la base de datos para obtener las asignaturas de area clinica
+  let consulta = 'select id_asignatura_sociomedica, nombre_asig_sociomedica from bases_sociomedicas;';
+
+  // Obtenemos los datos
+  let datos = await pool.query(consulta);
+
+  // Si el arreglo de objetos es vacio entonces no hay resultado
+  if( datos.length <= 0 ){
+    return res.status(404).json({
+        estado: false,
+        mensaje: 'No se encontraron resultados'
+    });
+  }
+
+  res.status(200).json({
+      estado: true,
+      mensaje: 'Se encontraron las siguientes asiganturas de bases biomedicas',
+      datos
+  });
+})
 // Exportamos las rutas
 module.exports = app;
